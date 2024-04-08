@@ -1,0 +1,10 @@
+
+<div class="container">
+    <h2 class=" text-center">Add new Task</h2>
+<input #taskTitle type="text" class="form-control" placeholder="write the task title here">
+<textarea #taskDescription class="form-control" placeholder="write the description"></textarea>
+<input #taskDueDate type="date" class="form-control" placeholder="write the due date for the task here">
+
+<button class="btn btn-success" (click)="saveTask(taskTitle,taskDescription,taskDueDate)"> Save</button>
+<button (click)="Cancel()" class="btn btn-primary">Cancel</button>
+</div>

@@ -1,0 +1,45 @@
+<div class="container">
+    <blockquote class="blockquote text-center">
+      <p> List of Tasks</p>
+      <footer class="blockquote-footer"> Come On You Gunners!</footer>
+    </blockquote>
+    <div *ngIf="tasksService.tasks.length == 0">
+      <p class="alert alert-danger">
+        No tasks for today.
+      </p>
+    </div>
+    <div *ngIf="tasksService.tasks.length != 0">
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let task of tasksService.tasks; index as i">
+          <div *ngIf="!editingTask || editingTask !== task">
+            <label class="done">Done?</label>
+          <br>
+            <input class="completed" type="checkbox" [checked]="task.completed" (change)="toggleTaskCompletion(i)">
+            <label>Task Name: {{ task.title }}</label>
+            <p>Task Description: {{ task.description }}</p>
+            <span *ngIf="task.dueDate" class="due-date"> DueDate: {{ task.dueDate | date:'shortDate' }}</span>
+            <button class="del-btn btn btn-danger" (click)="deleteTask(i)"> Delete</button>
+            <button class="edit-btn btn btn-primary" (click)="editTask(task)"> Edit</button>
+          </div>
+          <div *ngIf="editingTask === task">
+            <input type="text" #editedTitle placeholder="Title" value="{{task.title}}"><br>
+            <input type="text" #editedDescription placeholder="Description" value="{{task.description}}"><br>
+            <input type="date" #editedDueDate [value]="task.dueDate | date:'yyyy-MM-dd'"><br>
+            <button class="save-btn btn btn-success" (click)="saveEditedTask(editedTitle.value, editedDescription.value, editedDueDate.value)"> Save</button>
+            <button class="cancel-btn btn btn-secondary" (click)="cancelEdit()"> Cancel</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div>
+      <button (click)="goToDestination()" class="form-control add-task-btn btn btn-secondary">Add Task</button>
+    </div>
+    <div class="author-box fade-in-box">
+      <div class="container">
+        <p> Todo List Project Using Angular</p>
+        <p>Created By: Kareem Yahya</p>
+        <p>&copy; Copyrights 2024</p>
+      </div>
+    </div>
+  </div>
+  
