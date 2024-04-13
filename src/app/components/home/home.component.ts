@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   taskId: any;
   task: any;
-  editingTask: Task | null = null; // Track the task being edited
+  editingTask: Task | null = null;
 
   constructor(public tasksService: TasksService, public router: Router) { }
 
@@ -28,29 +28,29 @@ export class HomeComponent {
     this.router.navigate(['/add-task']);
   }
 
-  // Method to initiate task editing
+  
   editTask(task: Task) {
-    this.editingTask = task; // Assign the task to editingTask directly
+    this.editingTask = task; 
   }
 
-  // Method to save edited task
+  
   saveEditedTask(title: string, description: string, dueDate: string) {
     if (this.editingTask) {
-      // Update the properties of the editing task
+      
       this.editingTask.title = title;
       this.editingTask.description = description;
       this.editingTask.dueDate = new Date(dueDate);
 
-      this.editingTask = null; // Reset editing task
+      this.editingTask = null; 
     }
   }
 
-  // Method to cancel editing
+  
   cancelEdit() {
     this.editingTask = null;
   }
   toggleTaskCompletion(index: number) {
     const task = this.tasksService.tasks[index];
-    task.completed = !task.completed; // Toggle completion status
+    task.completed = !task.completed; 
   }
 }
