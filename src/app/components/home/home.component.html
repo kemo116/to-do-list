@@ -12,15 +12,16 @@
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let task of tasksService.tasks; index as i">
           <div *ngIf="!editingTask || editingTask !== task">
-            <label class="done">Done?</label>
-          <br>
+            <label class="done">{{ task.completed ? 'Completed' : 'Pending' }}</label>
+            <br>
             <input class="completed" type="checkbox" [checked]="task.completed" (change)="toggleTaskCompletion(i)">
             <label>Task Name: {{ task.title }}</label>
             <p>Task Description: {{ task.description }}</p>
             <span *ngIf="task.dueDate" class="due-date"> DueDate: {{ task.dueDate | date:'shortDate' }}</span>
             <button class="del-btn btn btn-danger" (click)="deleteTask(i)"> Delete</button>
             <button class="edit-btn btn btn-primary" (click)="editTask(task)"> Edit</button>
-          </div>
+        </div>
+        
           <div *ngIf="editingTask === task">
             <input type="text" #editedTitle placeholder="Title" value="{{task.title}}"><br>
             <input type="text" #editedDescription placeholder="Description" value="{{task.description}}"><br>
