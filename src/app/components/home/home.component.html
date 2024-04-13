@@ -8,7 +8,7 @@
         No tasks for today.
       </p>
     </div>
-    <div *ngIf="tasksService.tasks.length != 0">
+    <div class="task-container" *ngIf="tasksService.tasks.length != 0">
       <ul class="list-group">
         <li class="list-group-item" *ngFor="let task of tasksService.tasks; index as i">
           <div *ngIf="!editingTask || editingTask !== task">
